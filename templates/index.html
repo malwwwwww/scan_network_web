@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>WELCOME TO NETWORK MANAGER</h1>
+        <h2>By: MALWWW</h2>
+        <div class='warning'>
+            <p><strong>wARNING</strong> The use of this application must be carried out responsibly.</p>
+        </div>
+        <div class='dashboard'>
+            <a href="{{ url_for('dashboard') }}" class="btn">Dashboard</a>
+        </div>
+    </div>
+    
+    <div class="gif-footer">
+        <img src="{{ url_for('static', filename='retrato.gif') }}" alt="GIF de fondo">
+    </div>
+</body>
+</html>

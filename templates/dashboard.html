@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Dashboard</h1>
+
+        <h2>Escanear Hosts</h2>
+        <form method="POST">
+            <input type="text" name="red" placeholder="Ingresa la red (ej: 192.168.1.0/24)" required>
+            <button type="submit" name="action" value="escanear_hosts" class="btn">Escanear Hosts</button>
+        </form>
+        <h3>Hosts Encontrados:</h3>
+        <ul>
+            {% for host in hosts %}
+                <li>{{ host }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Escanear Puertos</h2>
+        <form method="POST">
+            <input type="text" name="host" placeholder="192.168.1.1" required>
+            <button type="submit" name="action" value="escanear_puertos" class="btn">Escanear Puertos</button>
+        </form>
+        
+        <h3>Resultados de Escaneo de Puertos:</h3>
+        {% if puertos %}
+            <pre>
+            {% for puerto in puertos %}
+                {{ puerto }}
+            {% endfor %}
+            </pre>
+        {% else %}
+            <p>No hay resultados.</p>
+        {% endif %}
+        
+        <h2>Detectar Sistema Operativo</h2>
+        <form method="POST">
+            <input type="text" name="host" placeholder="192.168.1.1" required>
+            <button type="submit" name="action" value="detectar_os" class="btn">Detectar SO</button>
+        </form>
+        <h3>Información del Sistema Operativo:</h3>
+        <p>{{ os_info if os_info else 'No se detectó información del sistema operativo.' }}</p>
+
+        <h2>Escanear Vulnerabilidades</h2>
+        <form method="post">
+            <label for="host">Escanear Vulnerabilidades:</label>
+            <input type="text" name="host" placeholder="192.168.1.1" required>
+            <button type="submit" name="action" value="escanear_vulnerabilidades" class="btn">Escanear Vulnerabilidades</button>
+        </form>
+        
+        <h3>Resultados de Escaneo de Vulnerabilidades</h3>
+        <ul>
+            {% if vulnerabilidades %}
+                {% for vulnerabilidad in vulnerabilidades %}
+                    <li>
+                        Nombre: {{ vulnerabilidad.name }}<br>
+                        Tipo: {{ vulnerabilidad.type }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>No se encontraron vulnerabilidades.</li>
+            {% endif %}
+        </ul>
+        
+        <h2>Escanear Servicios</h2>
+        <form method="POST">
+            <input type="text" name="host" placeholder="192.168.1.1" required>
+            <button type="submit" name="action" value="escanear_servicios" class="btn">Escanear Servicios</button>
+        </form>
+        <h3>Resultados de Escaneo de Servicios:</h3>
+        <ul>
+            <li>{{ servicios if servicios else 'No hay resultados.' }}</li>
+        </ul>
+
+        <h2>Capturar Paquetes</h2>
+        <form method="post">
+            <label for="interface">Capturar Paquetes en la Interfaz:</label>
+            <input type="text" name="interface" placeholder="eth0" required>
+            <label for="host_ip">IP del Host:</label>
+            <input type="text" name="host_ip" placeholder="192.168.1.10" required>
+            <button type="submit" name="action" value="capturar_paquetes" class="btn">Capturar Paquetes</button>
+        </form>
+        
+        <h3>Resultados de Captura de Paquetes</h3>
+        <ul>
+            {% if paquetes %}
+                {% for paquete in paquetes %}
+                    <li>
+                        <strong>Timestamp:</strong> {{ paquete.timestamp }}<br>
+                        <strong>Origen:</strong> {{ paquete.origen }}<br>
+                        <strong>Destino:</strong> {{ paquete.destino }}<br>
+                        <strong>Protocolo:</strong> {{ paquete.protocolo }}<br>
+                        <strong>Tamaño:</strong> {{ paquete.size }} bytes<br>
+                        <strong>Detalle:</strong>
+                        <pre>{{ paquete.detalle }}</pre>
+                    </li>
+                    <hr>
+                {% endfor %}
+            {% else %}
+                <li>No se capturaron paquetes.</li>
+            {% endif %}
+        </ul>
+
+        <h2>Cerrar Puertos</h2>
+        <form method="POST">
+            <input type="text" name="host" placeholder="192.168.1.1" required>
+            <input type="text" name="username" placeholder="usuario" required>
+            <input type="text" name="password" placeholder="contraseña" required>
+            <input type="text" name="puertos" placeholder="80,443" required>
+            <button type="submit" name="action" value="cerrar_puertos" class="btn">Cerrar Puertos</button>
+        </form>
+        <h3>Resultados de Cierre de Puertos:</h3>
+        <ul>
+            <li>{{ cierre_resultado if cierre_resultado else 'No hay resultados.' }}</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+body {
+    background-color: black; /* Fondo negro */
+    color: #00FF00; /* Texto verde para un estilo hacker/retro */
+    font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex;
+    flex-direction: column; /* Para apilar contenido verticalmente */
+    justify-content: space-between; /* Espacio entre elementos */
+}
+
+.container {
+    padding: 20px;
+    flex: 1; /* Permite que el contenedor ocupe el espacio restante */
+    display: flex;
+    flex-direction: column; /* Alinear elementos verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center; /* Centrar verticalmente */
+}
+
+.warning{
+    background-color: black; /* Fondo negro */
+    color: red; /* Texto verde para un estilo hacker/retro */
+    font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+}
+
+.dashboard{
+    background-color: black; /* Fondo negro */
+    color: red; /* Texto verde para un estilo hacker/retro */
+    font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+}
+
+.gif-footer {
+    width: 100%; /* Asegura que el GIF ocupe todo el ancho */
+    display: flex;
+    justify-content: center; /* Centrar el GIF horizontalmente */
+}
+
+.gif-footer img {
+    width: 40%; /* Ajusta el tamaño del GIF al 50% del ancho de la ventana */
+    height: auto; /* Mantiene la relación de aspecto */
+}
+
+.btn {
+    background-color: #FF0000; /* Color de fondo rojo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    text-align: center; /* Centrar texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Para que funcione el padding */
+    font-size: 16px; /* Tamaño de fuente */
+    margin: 10px 0; /* Espaciado externo */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.btn:hover {
+    background-color: #CC0000; /* Color de fondo más oscuro al pasar el mouse */
+}
